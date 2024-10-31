@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">State Capitals Quiz</string>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="help_fragment_text">
+    <![CDATA[
+        <h3>State Capitals Quiz</h3>
+        <p>Welcome to the State Capitals Quiz! This app is designed to test your knowledge of U.S.
+        state capitals. Each quiz consists of 6 questions, each asking you to identify the capital city
+        of a given state from among 3 possible choices.</p>
+        <br/>
+        <p>Open the navigation drawer to view the main menu and navigate between app functions.
+        You will be able to access the following screens:</p>
+        <br/><br/>
+        <b>Start Quiz</b><br/>
+        <p>Begin a new quiz where you’ll be presented with 6 multiple-choice questions.
+        Try to correctly identify as many state capitals as possible.</p>
+        <br/><br/>
+        <b>View Past Results</b><br/>
+        <p>Review your past quiz attempts and see how well you’ve done. You can view your scores and track your progress over time.</p>
+        <br/><br/>
+        <b>Get Help</b><br/>
+        <p>Access useful information about the app, including how to navigate and use each feature.</p>
+        <br/><br/>
+        <b>Exit Quiz</b><br/>
+        <p>Close the app and end your quiz session.</p>
+        <br/><br/>
+        <p>Enjoy challenging yourself with the State Capitals Quiz and improve your knowledge of U.S. geography!</p>
+    ]]>
+    </string>
+</resources>
