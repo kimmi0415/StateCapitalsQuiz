@@ -64,7 +64,7 @@ public class DBHelper extends SQLiteOpenHelper  {
                 ")"; // TODO
         db.execSQL(createScores);
         db.execSQL(createQuestions);
-        db.execSQL(createCurrentQuiz);
+        // db.execSQL(createCurrentQuiz);
         fillQuestionBank(db);
     }
 
