@@ -128,10 +128,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void testDatabase(QuizData quizData) {
         // test quizzes
-        Quiz testQuiz1 = new Quiz();
+        Quiz testQuiz1 = new Quiz(getApplicationContext());
         Log.d(DEBUG_TAG, "" + testQuiz1.questions);
-        Quiz testQuiz2 = new Quiz();
+        Quiz testQuiz2 = new Quiz(getApplicationContext());
         Log.d(DEBUG_TAG, "" + testQuiz2.questions);
+
+        quizData.open();
+
         Quiz testQuiz3 = new Quiz();
         Log.d(DEBUG_TAG, "" + testQuiz3.questions);
 
