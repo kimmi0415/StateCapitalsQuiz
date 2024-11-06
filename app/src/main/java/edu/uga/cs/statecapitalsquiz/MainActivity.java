@@ -56,7 +56,14 @@ public class MainActivity extends AppCompatActivity {
             selectDrawerItem(menuItem);
             return true;
         });
-    }
+
+        // Load MainScreen as the default fragment if there is no saved instance state
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragmentContainerView, new MainScreen())
+                    .commit();
+        }
+}
 
     public void selectDrawerItem(MenuItem menuItem) {
         Fragment fragment = null;
