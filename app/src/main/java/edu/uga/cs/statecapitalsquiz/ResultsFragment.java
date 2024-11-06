@@ -37,7 +37,7 @@ public class ResultsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_results, container, false);
 
-        // Initialize RecyclerView and adapter
+        // Set up RecyclerView
         resultsRecyclerView = view.findViewById(R.id.resultsRecyclerView);
         resultsRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
@@ -55,11 +55,8 @@ public class ResultsFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-        // Open the database
-        if (quizData != null) {
-            quizData.open();
-            Log.d(TAG, "QuizResultsFragment: Database opened");
-        }
+        quizData.open();
+        Log.d(TAG, "ResultsFragment: Database opened");
 
         // Load scores asynchronously
         new LoadScoresTask().execute();
@@ -69,11 +66,8 @@ public class ResultsFragment extends Fragment {
     public void onPause() {
         super.onPause();
 
-        // Close the database
-        if (quizData != null) {
-            quizData.close();
-            Log.d(TAG, "QuizResultsFragment: Database closed");
-        }
+        quizData.close();
+        Log.d(TAG, "ResultsFragment: Database closed");
     }
 
     // AsyncTask to load scores from the database
@@ -81,7 +75,7 @@ public class ResultsFragment extends Fragment {
 
         @Override
         protected List<Score> doInBackground(Void... voids) {
-            // Retrieve all scores
+            // Retrieve all scores in descending order
             return quizData.getAllScores();
         }
 
