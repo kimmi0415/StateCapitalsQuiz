@@ -45,19 +45,33 @@ public class EndScreenFragment extends Fragment {
 
         TextView scoreTextView = view.findViewById(R.id.finalScoreTextView);
         TextView dateTextView = view.findViewById(R.id.dateTextView);
+        TextView noteTextView = view.findViewById(R.id.noteTextView);
         Button retakeQuizButton = view.findViewById(R.id.retakeQuizButton);
+        // Button startNewQuizButton = view.findViewById(R.id.startNewQuizButton); // Initialize startNewQuizButton
 
         // Display the final score and date
-        scoreTextView.setText("Your final score: " + finalScore);
+        scoreTextView.setText("Final Score: " + finalScore);
         dateTextView.setText("Date: " + finalDate);
 
-        // Set up the retake quiz button
+        // Set up the retake quiz button to reload the same quiz
         retakeQuizButton.setOnClickListener(v -> {
             if (resetCallback != null) {
-                resetCallback.run(); // Execute the reset callback
+                resetCallback.run(); // Execute the reset callback to retake the same quiz
             }
         });
 
+        /*
+        // Set up the start new quiz button to load a fresh set of questions
+        startNewQuizButton.setOnClickListener(v -> {
+            Fragment newQuizFragment = new QuizFragment(); // Start a completely new quiz
+            getParentFragmentManager().beginTransaction()
+                    .replace(R.id.fragmentContainerView, newQuizFragment)
+                    .addToBackStack(null) // Add to back stack if you want the user to navigate back
+                    .commit();
+        });
+         */
+
         return view;
     }
+
 }
