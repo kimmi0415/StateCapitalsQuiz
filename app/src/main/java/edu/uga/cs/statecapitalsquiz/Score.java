@@ -23,7 +23,7 @@ public class Score {
         for (Question question : q.questions) {
             if (question.isCorrect()) total += 1.0;
         }
-        score = total / 6.0;
+        score = (total / 6.0) * 100;
     }
 
     // Creates a new Score object with the current date

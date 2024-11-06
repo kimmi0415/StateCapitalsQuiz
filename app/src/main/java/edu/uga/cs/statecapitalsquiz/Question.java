@@ -2,8 +2,9 @@ package edu.uga.cs.statecapitalsquiz;
 import android.util.Log;
 
 import java.util.*;
+import java.io.Serializable;
 
-public class Question {
+public class Question implements Serializable {
     /** enum to hold possible states of the question */
     public enum AnswerState {
         UNANSWERED,
