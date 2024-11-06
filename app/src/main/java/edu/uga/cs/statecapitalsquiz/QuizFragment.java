@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -18,6 +19,7 @@ public class QuizFragment extends Fragment {
     private int currentQuestionIndex = 0;
     private RadioButton answer1Button, answer2Button, answer3Button;
     private TextView questionTextView, questionProgressTextView;
+    private Button retakeQuizButton;
     private QuizData quizData;
     // private RadioGroup answerGroup;
 
@@ -40,6 +42,7 @@ public class QuizFragment extends Fragment {
         answer1Button = view.findViewById(R.id.answer1);
         answer2Button = view.findViewById(R.id.answer2);
         answer3Button = view.findViewById(R.id.answer3);
+        retakeQuizButton = view.findViewById(R.id.retakeQuizButton);
 
         // Initialize QuizData for database access
         quizData = new QuizData(getActivity());
@@ -49,6 +52,9 @@ public class QuizFragment extends Fragment {
 
         // Set up answer button listeners
         setAnswerListeners();
+
+        // Set up retake button listener
+        retakeQuizButton.setOnClickListener(v -> resetQuiz());
 
         return view;
     }
@@ -110,12 +116,21 @@ public class QuizFragment extends Fragment {
     private void completeQuiz() {
         // Calculate and save score
         new SaveScoreTask().execute(new Score(quiz));
+        // Display final score
         displayScore();
+        // Show the retake button
+        retakeQuizButton.setVisibility(View.VISIBLE);
     }
 
     private void displayScore() {
         Score score = new Score(quiz);
         Toast.makeText(getActivity(), "Quiz completed! Your score: " + score.getScoreAsString(), Toast.LENGTH_LONG).show();
+    }
+
+    private void resetQuiz() {
+        // Reset the quiz for retaking
+        currentQuestionIndex = 0;
+        loadQuiz();
     }
 
     public class SaveScoreTask extends AsyncTask<Score, Score> {
