@@ -51,7 +51,7 @@ public class QuizFragment extends Fragment {
 
         // Set up ViewPager2 for swiping between questions
         ViewPager2 viewPager = view.findViewById(R.id.viewpager);
-        QuizPagerAdapter adapter = new QuizPagerAdapter(getChildFragmentManager(), getLifecycle(), quiz, this::resetQuiz);
+        QuizPagerAdapter adapter = new QuizPagerAdapter(getChildFragmentManager(), getLifecycle(), quiz, this::resetQuiz, this::newQuiz);
         viewPager.setAdapter(adapter);
 
         // Register callback for detecting the end screen swipe
@@ -74,6 +74,14 @@ public class QuizFragment extends Fragment {
     private void resetQuiz() {
         quiz.reset();
         ViewPager2 viewPager = requireView().findViewById(R.id.viewpager);
+        viewPager.setCurrentItem(0, false); // Go back to the first question
+    }
+
+    private void newQuiz() {
+        quiz = new Quiz();
+        ViewPager2 viewPager = requireView().findViewById(R.id.viewpager);
+        QuizPagerAdapter adapter = new QuizPagerAdapter(getChildFragmentManager(), getLifecycle(), quiz, this::resetQuiz, this::newQuiz);
+        viewPager.setAdapter(adapter);
         viewPager.setCurrentItem(0, false); // Go back to the first question
     }
 

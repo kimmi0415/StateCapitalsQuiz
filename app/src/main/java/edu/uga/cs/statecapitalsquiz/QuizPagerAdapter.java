@@ -10,11 +10,13 @@ public class QuizPagerAdapter extends FragmentStateAdapter {
 
     private final Quiz quiz;
     private final Runnable resetCallback;
+    private final Runnable newCallback;
 
-    public QuizPagerAdapter(FragmentManager fragmentManager, Lifecycle lifecycle, Quiz quiz, Runnable resetCallback) {
+    public QuizPagerAdapter(FragmentManager fragmentManager, Lifecycle lifecycle, Quiz quiz, Runnable resetCallback, Runnable newCallback) {
         super(fragmentManager, lifecycle);
         this.quiz = quiz;
         this.resetCallback = resetCallback;
+        this.newCallback = newCallback;
     }
 
     @NonNull
@@ -26,7 +28,7 @@ public class QuizPagerAdapter extends FragmentStateAdapter {
         } else {
             // Return the EndScreenFragment as the final screen
             Score finalScore = new Score(quiz);
-            return EndScreenFragment.newInstance(finalScore.getScoreAsString(), finalScore.getDateString(), resetCallback);
+            return EndScreenFragment.newInstance(finalScore.getScoreAsString(), finalScore.getDateString(), resetCallback, newCallback);
         }
     }
 

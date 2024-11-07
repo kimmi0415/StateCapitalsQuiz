@@ -18,14 +18,16 @@ public class EndScreenFragment extends Fragment {
     private String finalScore;
     private String finalDate;
     private Runnable resetCallback;
+    private Runnable newCallback;
 
-    public static EndScreenFragment newInstance(String score, String date, Runnable resetCallback) {
+    public static EndScreenFragment newInstance(String score, String date, Runnable resetCallback, Runnable newCallback) {
         EndScreenFragment fragment = new EndScreenFragment();
         Bundle args = new Bundle();
         args.putString(ARG_SCORE, score); // Pass score as a string
         args.putString(ARG_DATE, date); // Pass date as a string
         fragment.setArguments(args);
         fragment.resetCallback = resetCallback; // Set the reset callback
+        fragment.newCallback = newCallback;
         return fragment;
     }
 
@@ -47,7 +49,7 @@ public class EndScreenFragment extends Fragment {
         TextView dateTextView = view.findViewById(R.id.dateTextView);
         TextView noteTextView = view.findViewById(R.id.noteTextView);
         Button retakeQuizButton = view.findViewById(R.id.retakeQuizButton);
-        // Button startNewQuizButton = view.findViewById(R.id.startNewQuizButton); // Initialize startNewQuizButton
+        Button startNewQuizButton = view.findViewById(R.id.startNewQuizButton); // Initialize startNewQuizButton
 
         // Display the final score and date
         scoreTextView.setText("Final Score: " + finalScore);
@@ -60,16 +62,12 @@ public class EndScreenFragment extends Fragment {
             }
         });
 
-        /*
         // Set up the start new quiz button to load a fresh set of questions
         startNewQuizButton.setOnClickListener(v -> {
-            Fragment newQuizFragment = new QuizFragment(); // Start a completely new quiz
-            getParentFragmentManager().beginTransaction()
-                    .replace(R.id.fragmentContainerView, newQuizFragment)
-                    .addToBackStack(null) // Add to back stack if you want the user to navigate back
-                    .commit();
+            if (newCallback != null) {
+                newCallback.run();
+            }
         });
-         */
 
         return view;
     }
