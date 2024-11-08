@@ -2,20 +2,21 @@
     <string name="app_name">State Capitals Quiz</string>
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
     <string name="help_text">
         <![CDATA[
         <html>
         <h2>Welcome to the State Capitals Quiz!</h2>
-    <p>The State Capitals Quiz tests your knowledge of capital cities across the United States. The quiz consists of 6 questions, each asking you to identify the capital city of a given state.</p>
+        <p>The State Capitals Quiz tests your knowledge of capital cities across the United States. The quiz consists of 6 questions, each asking you to identify the capital city of a given state.</p>
 
-    <h3>Navigating the Quiz</h3>
-    <p>By clicking "Start Quiz" in the navigation bar, you will start the quiz. To move to the next question, simply swipe left. Once you have answered all 6 questions, the app will display your quiz results immediately following the final question.</p>
+        <h3>Navigating the Quiz</h3>
+        <p>By clicking "Start Quiz" in the navigation bar, you will start the quiz. To move to the next question, simply swipe left. Once you have answered all 6 questions, the app will display your quiz results immediately following the final question.</p>
 
+        <h3>Viewing Past Results</h3>
+        <p>By clicking "View Results" in the navigation bar, you can access your prior quizzes.</p>
 
-    <h3>Viewing Past Results</h3>
-    <p>By clicking "View Results" in the navigation bar, you can access your prior quizzes. </p>
-
-    <p>Good luck, and enjoy testing your knowledge of U.S. state capitals!</p>
-    /html>]]></string>
+        <p>Good luck, and enjoy testing your knowledge of U.S. state capitals!</p>
+        </html>
+        ]]>
+    </string>
 </resources>

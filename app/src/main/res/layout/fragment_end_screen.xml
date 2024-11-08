@@ -57,7 +57,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="*If you would like to take a new quiz or view past results, please click the top left corner."
+        android:text="*If you would like to view past results, please click the top left corner."
         android:textColor="#666666"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
