@@ -109,12 +109,22 @@ public class QuizData {
     }
 
     public void storeCurrentQuiz(Quiz q) {
-        // TODO
+        db.execSQL("DELETE FROM " + DBHelper.TABLE_CURRENT_QUIZ);
+        ContentValues values = new ContentValues();
+        values.put(DBHelper.CURRENT_QUIZ_COLUMN_QUIZINFO, q.toString());
+        db.insert(DBHelper.TABLE_CURRENT_QUIZ, null, values);
     }
 
     public Quiz getCurrentQuiz() {
-        // TODO
-        return null;
+        Quiz q = null;
+        Cursor cursor = db.query(DBHelper.TABLE_CURRENT_QUIZ,
+                new String[] {DBHelper.CURRENT_QUIZ_COLUMN_QUIZINFO}, null, null, null, null, null);
+        while (cursor.moveToNext()) {
+            int infoCid = cursor.getColumnIndex(DBHelper.CURRENT_QUIZ_COLUMN_QUIZINFO);
+            String info = cursor.getString(infoCid);
+            q = new Quiz(info);
+        }
+        return q;
     }
 }
 

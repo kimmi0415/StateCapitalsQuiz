@@ -39,12 +39,7 @@ public class DBHelper extends SQLiteOpenHelper  {
     /** SQL constants for current quiz table */
     public static final String TABLE_CURRENT_QUIZ = "currentquiz";
     public static final String CURRENT_QUIZ_COLUMN_ID = "cqid";
-    public static final String CURRENT_QUIZ_COLUMN_ANSWER1 = "answerchoice1";
-    public static final String CURRENT_QUIZ_COLUMN_ANSWER2 = "answerchoice2";
-    public static final String CURRENT_QUIZ_COLUMN_ANSWER3 = "answerchoice3";
-    public static final String CURRENT_QUIZ_COLUMN_CORRECT_ANSWER = "correctanswer";
-    public static final String CURRENT_QUIZ_COLUMN_STATE = "state";
-    public static final String CURRENT_QUIZ_COLUMN_STATUS = "status";
+    public static final String CURRENT_QUIZ_COLUMN_QUIZINFO = "quizInfo";
 
 
     /**
@@ -77,11 +72,11 @@ public class DBHelper extends SQLiteOpenHelper  {
                 "result REAL, date TEXT)";
         String createQuestions = "create table questions (qid INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "state TEXT, capital TEXT, city2 TEXT, city3 TEXT)";
-        String createCurrentQuiz = "create table currentquiz (cqid INTEGER PRIMARY KEY AUTOINCREMENT" +
-                ")"; // TODO
+        String createCurrentQuiz = "create table currentquiz (cqid INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "quizInfo TEXT)"; // TODO
         db.execSQL(createScores);
         db.execSQL(createQuestions);
-        // db.execSQL(createCurrentQuiz);
+        db.execSQL(createCurrentQuiz);
         fillQuestionBank(db);
     }
 

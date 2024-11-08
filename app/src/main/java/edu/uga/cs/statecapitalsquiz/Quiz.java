@@ -7,9 +7,6 @@ public class Quiz {
     /** The list of questions used in the quiz */
     public List<Question> questions;
 
-    /** The currently active question, used for restoring instance state */
-    public Question currentQuestion;
-
     /** Field to track the current score */
     private int currentScore;
 
@@ -42,6 +39,59 @@ public class Quiz {
         Collections.shuffle(questionList);
         for (int i = 0; i < 6; i++) questions.add(Question.cloneQuestion(questionList.get(i)));
         currentScore = 0; // Initialize score
+    }
+
+    /**
+     * Gets the current quiz as a parseable string for saving/restoring
+     * the instance state efficiently.
+     * @return the converted quiz
+     */
+    public String toString() {
+        StringBuilder str = new StringBuilder();
+        str.append(currentScore);
+        for (Question q : questions) {
+            str.append(":");
+            str.append(q.state).append("&");
+            str.append(q.answer1).append("&");
+            str.append(q.answer2).append("&");
+            str.append(q.answer3).append("&");
+            str.append(q.correctAnswer).append("&");
+            if (q.status == Question.AnswerState.INCORRECT) str.append("i");
+            else if (q.status == Question.AnswerState.CORRECT) str.append("c");
+            else str.append("u");
+        }
+        return str.toString();
+    }
+
+    /**
+     * Parses a given string, intended to be the output from another
+     * Quiz's toString() call, into a new quiz object.
+     * @param s the info string
+     */
+    public Quiz(String s) {
+        questions = new ArrayList<>();
+        String[] tokens = s.split(":");
+        for (String token : tokens) {
+            if (token.length() == 1) currentScore = Integer.parseInt(token);
+            else {
+                String[] questionData = token.split("&");
+                String state = questionData[0];
+                String answer1 = questionData[1];
+                String answer2 = questionData[2];
+                String answer3 = questionData[3];
+                String correct = questionData[4];
+                Question q = new Question();
+                q.state = state;
+                q.answer1 = answer1;
+                q.answer2 = answer2;
+                q.answer3 = answer3;
+                q.correctAnswer = correct;
+                if (questionData[5].equals("i")) q.setIncorrect();
+                else if (questionData[5].equals("c")) q.setCorrect();
+                else q.setUnanswered();
+                questions.add(q);
+            }
+        }
     }
 
     /**
@@ -98,21 +148,5 @@ public class Quiz {
      */
     public Question getQuestion(int questionNumber) {
         return questions.get(questionNumber);
-    }
-
-    /**
-     * Gets the current question.
-     * @return The current Question object
-     */
-    public Question getCurrentQuestion() {
-        return currentQuestion;
-    }
-
-    /**
-     * Sets the current question.
-     * @param q The Question to set as current
-     */
-    public void setCurrentQuestion(Question q) {
-        currentQuestion = q;
     }
 }

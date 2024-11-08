@@ -85,6 +85,16 @@ public class QuizFragment extends Fragment {
         viewPager.setCurrentItem(0, false); // Go back to the first question
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
+
     // AsyncTask for saving the score to the database
     private class SaveScoreTask extends AsyncTask<Score, Void> {
         @Override

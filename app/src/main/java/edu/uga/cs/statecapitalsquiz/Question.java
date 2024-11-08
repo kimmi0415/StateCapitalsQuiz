@@ -50,6 +50,13 @@ public class Question implements Serializable {
     }
 
     /**
+     * Blank constructor, used in the Quiz class's parse method.
+     */
+    public Question() {
+        //
+    }
+
+    /**
      * Creates a deep copy of an existing question with the same answers in new random positions.
      *
      * @param q The question to clone

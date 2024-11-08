@@ -34,7 +34,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        /** temp testing for database
+        /** temp for testing database
+        QuizData quizData;
         quizData = new QuizData(getApplicationContext());
         quizData.open();
         testDatabase(quizData);
@@ -166,6 +167,28 @@ public class MainActivity extends AppCompatActivity {
         testQuiz3.getQuestion(3).setCorrect();
         testQuiz3.getQuestion(4).setCorrect();
         testQuiz3.getQuestion(5).setCorrect();
+
+        Log.d("QuizTest", testQuiz1.toString());
+        Log.d("QuizTest", testQuiz2.toString());
+        Log.d("QuizTest", testQuiz3.toString());
+
+        Quiz reconstruction1 = new Quiz(testQuiz1.toString());
+        Quiz reconstruction2 = new Quiz(testQuiz2.toString());
+        Quiz reconstruction3 = new Quiz(testQuiz3.toString());
+        Log.d("QuizTest", reconstruction1.toString());
+        Log.d("QuizTest", reconstruction2.toString());
+        Log.d("QuizTest", reconstruction3.toString());
+
+        // test storing quiz
+        quizData.storeCurrentQuiz(reconstruction1);
+        Log.d("StoringTest", "" + quizData.getCurrentQuiz());
+        // test storing quiz
+        quizData.storeCurrentQuiz(reconstruction2);
+        Log.d("StoringTest", "" + quizData.getCurrentQuiz());
+        // test storing quiz
+        quizData.storeCurrentQuiz(reconstruction3);
+        Log.d("StoringTest", "" + quizData.getCurrentQuiz());
+
 
         // test scores
         Score score1 = new Score(testQuiz1);
