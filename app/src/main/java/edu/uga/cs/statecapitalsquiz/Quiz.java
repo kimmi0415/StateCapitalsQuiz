@@ -4,15 +4,19 @@ import android.content.Context;
 import java.util.*;
 
 public class Quiz {
-    /** The list of questions used in the quiz */
+    /** The list of questions selected for this quiz */
     public List<Question> questions;
 
-    /** The current question, used for restoring instance state */
+    /** The currently active question, used for restoring instance state */
     public Question currentQuestion;
 
-    /** Field to track the current score */
+    /** Tracks the number of correctly answered questions */
     private int currentScore;
 
+    /**
+     * Creates a new quiz by randomly selecting 6 questions from the master list.
+     * Requires that QuizData.questionMasterList has already been initialized.
+     */
     public Quiz() {
         questions = new ArrayList<>();
         List<Question> questionList = QuizData.questionMasterList;
@@ -21,6 +25,11 @@ public class Quiz {
         currentScore = 0; // Initialize score
     }
 
+    /**
+     * Creates a new quiz using a Context to initialize the question database if needed.
+     *
+     * @param context The Android Context needed for database access
+     */
     public Quiz(Context context) {
         // will need to be wrapped in an async task if used
         if (QuizData.questionMasterList == null) {
@@ -35,7 +44,9 @@ public class Quiz {
         currentScore = 0; // Initialize score
     }
 
-    // Method to reset the quiz state
+    /**
+     * Resets the quiz to its initial state.
+     */
     public void reset() {
         currentScore = 0; // Reset the score
         for (Question question : questions) {
@@ -43,7 +54,9 @@ public class Quiz {
         }
     }
 
-    // Method to update the score based on the current status of each question
+    /**
+     * Updates the current score by counting the number of correctly answered questions.
+     */
     public void updateScore() {
         currentScore = 0; // Reset score and recalculate
         for (Question question : questions) {
@@ -53,25 +66,52 @@ public class Quiz {
         }
     }
 
-    // Method to get the current score
-    public int getCurrentScore() {return currentScore;
+    /**
+     * Gets the current score.
+     * @return The current score
+     */
+    public int getCurrentScore() {
+        return currentScore;
     }
+
+    /**
+     * Gets the total number of questions in this quiz.
+     * @return The number of questions
+     */
     public int getNumberOfQuestions() {
         return questions.size();
     }
 
+    /**
+     * Gets the list of all questions in this quiz.
+     * @return List of Question objects
+     */
     public List<Question> getQuestions() {
         return questions;
     }
 
+    /**
+     * Gets a specific question from the quiz by its index.
+     *
+     * @param questionNumber The index of the question to retrieve
+     * @return The requested Question object
+     */
     public Question getQuestion(int questionNumber) {
         return questions.get(questionNumber);
     }
 
+    /**
+     * Gets the current question.
+     * @return The current Question object
+     */
     public Question getCurrentQuestion() {
         return currentQuestion;
     }
 
+    /**
+     * Sets the current question.
+     * @param q The Question to set as current
+     */
     public void setCurrentQuestion(Question q) {
         currentQuestion = q;
     }

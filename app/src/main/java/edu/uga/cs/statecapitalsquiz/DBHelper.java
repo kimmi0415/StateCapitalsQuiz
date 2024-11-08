@@ -13,9 +13,13 @@ import java.util.*;
 import android.util.Log;
 
 public class DBHelper extends SQLiteOpenHelper  {
+    /** The name of the database */
     private static final String DB_NAME = "project4.db";
+    /** The version of the database */
     private static final int DB_VERSION = 1;
+    /** The currently active helper instance of the database */
     private static DBHelper helperInstance;
+    /** The context the app is running in */
     private Context context;
 
     /** SQL constants for scores table */
@@ -43,16 +47,29 @@ public class DBHelper extends SQLiteOpenHelper  {
     public static final String CURRENT_QUIZ_COLUMN_STATUS = "status";
 
 
+    /**
+     * Private constructor to create a new singleton instance.
+     * @param c the context to look for the database
+     */
     private DBHelper(Context c) {
         super(c, DB_NAME, null, DB_VERSION);
         context = c;
     }
 
+    /**
+     * Gets the current singleton instance.
+     * @param context The Android context
+     * @return the current singleton instance
+     */
     public static synchronized DBHelper getInstance(Context context) {
         if (helperInstance == null) helperInstance = new DBHelper(context.getApplicationContext());
         return helperInstance;
     }
 
+    /**
+     * Initializes tables upon creation of the database
+     * @param db The database
+     */
     @Override
     public void onCreate(SQLiteDatabase db) {
         // create all necessary tables here
@@ -68,6 +85,10 @@ public class DBHelper extends SQLiteOpenHelper  {
         fillQuestionBank(db);
     }
 
+    /**
+     * Reads the CSV file into the "questions" table.
+     * @param db the reference to the database
+     */
     public void fillQuestionBank(SQLiteDatabase db) {
         try {
             InputStream is = context.getAssets().open("state_capitals.csv");
@@ -90,6 +111,6 @@ public class DBHelper extends SQLiteOpenHelper  {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        // TODO
+        // Not used in this project.
     }
 }

@@ -10,13 +10,24 @@ import android.util.Log;
 import java.util.*;
 
 public class QuizData {
+    /** The reference to the database, */
     private SQLiteDatabase db;
+    /** The singleton instance of DBHelper. */
     private SQLiteOpenHelper helper;
+    /** The full questions table represented as a List. */
     public static List<Question> questionMasterList;
 
+    /**
+     * Creates a new QuizData object from the given context
+     * @param context the Android context
+     */
     public QuizData(Context context) {
         this.helper = DBHelper.getInstance(context);
     }
+
+    /**
+     * Opens the database, enabling it to be written to.
+     */
     public void open() {
         db = helper.getWritableDatabase();
         if (questionMasterList == null) {
@@ -24,10 +35,18 @@ public class QuizData {
             getListOfQuestions();
         }
     }
+
+    /**
+     * Closes the database, freeing up any resources in use.
+     */
     public void close() {
         if (helper != null) helper.close();
     }
 
+    /**
+     * Reads the entire questions table from the database and
+     * fills it into the questionMasterList static object.
+     */
     public void getListOfQuestions() {
         Cursor cursor = db.query(DBHelper.TABLE_QUESTIONS,
                 new String[] {DBHelper.QUESTIONS_COLUMN_ID,
@@ -49,10 +68,18 @@ public class QuizData {
         // Log.d("Project4", "" + questionMasterList);
     }
 
+    /**
+     * Returns the master list of questions.
+     * @return the master list of questions
+     */
     public List<Question> getQuestionList() {
         return questionMasterList;
     }
 
+    /**
+     * Adds a score to the database.
+     * @param s the score to be added
+     */
     public void addScore(Score s) {
         ContentValues values = new ContentValues();
         values.put(DBHelper.SCORES_COLUMN_RESULT, s.score);
@@ -60,6 +87,10 @@ public class QuizData {
         db.insert(DBHelper.TABLE_SCORES, null, values);
     }
 
+    /**
+     * Returns a list consisting of all past scores.
+     * @return a list consisting of all past scores
+     */
     public List<Score> getAllScores() {
         List<Score> scores = new ArrayList<>();
         Cursor cursor = db.query(DBHelper.TABLE_SCORES,
