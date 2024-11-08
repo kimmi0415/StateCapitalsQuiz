@@ -4,13 +4,13 @@ import android.content.Context;
 import java.util.*;
 
 public class Quiz {
-    /** The list of questions selected for this quiz */
+    /** The list of questions used in the quiz */
     public List<Question> questions;
 
     /** The currently active question, used for restoring instance state */
     public Question currentQuestion;
 
-    /** Tracks the number of correctly answered questions */
+    /** Field to track the current score */
     private int currentScore;
 
     /**
@@ -55,7 +55,7 @@ public class Quiz {
     }
 
     /**
-     * Updates the current score by counting the number of correctly answered questions.
+     * Updates the current score based on the status of each question.
      */
     public void updateScore() {
         currentScore = 0; // Reset score and recalculate
