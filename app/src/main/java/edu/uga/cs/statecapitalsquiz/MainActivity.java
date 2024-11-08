@@ -19,7 +19,10 @@ import com.google.android.material.navigation.NavigationView;
 
 import java.util.List;
 
-
+/**
+ * MainActivity class handles the main UI and navigation for the State Capitals Quiz app.
+ * It includes a navigation drawer, toolbar, and fragment management for different screens of the app.
+ */
 public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
@@ -66,6 +69,11 @@ public class MainActivity extends AppCompatActivity {
         }
 }
 
+    /**
+     * Handles item selection from the navigation drawer.
+     *
+     * @param menuItem The selected menu item.
+     */
     public void selectDrawerItem(MenuItem menuItem) {
         Fragment fragment = null;
 
@@ -108,24 +116,45 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout.closeDrawers();
     }
 
+    /**
+     * Sets up the ActionBarDrawerToggle for the navigation drawer.
+     *
+     * @return A configured ActionBarDrawerToggle instance.
+     */
     private ActionBarDrawerToggle setupDrawerToggle() {
         // Set up the ActionBarDrawerToggle with the toolbar and DrawerLayout
         return new ActionBarDrawerToggle(
                 this, drawerLayout, toolbar, R.string.drawer_open, R.string.drawer_close);
     }
 
+    /**
+     * Synchronizes the state of the drawer toggle after the activity is created.
+     *
+     * @param savedInstanceState The saved instance state of the activity.
+     */
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         drawerToggle.syncState();
     }
 
+    /**
+     * Handles configuration changes (e.g., orientation changes) and updates the drawer toggle state.
+     *
+     * @param newConfig The new configuration after the change.
+     */
     @Override
     public void onConfigurationChanged(@NonNull Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         drawerToggle.onConfigurationChanged(newConfig);
     }
 
+    /**
+     * Handles options menu item selection.
+     *
+     * @param item The selected menu item.
+     * @return True if the item was handled by the drawer toggle, otherwise calls the superclass method.
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (drawerToggle.onOptionsItemSelected(item)) {
@@ -134,6 +163,12 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * A test method for database functionality.
+     * It creates sample quizzes, logs their progress, and tests storing and retrieving scores.
+     *
+     * @param quizData The QuizData instance for database operations.
+     */
     private void testDatabase(QuizData quizData) {
         // test quizzes
         Quiz testQuiz1 = new Quiz(getApplicationContext());

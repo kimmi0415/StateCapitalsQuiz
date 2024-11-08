@@ -11,6 +11,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+/**
+ * QuestionFragment class displays a single question in the quiz.
+ * It shows the question text, answer choices, and handles user selection.
+ */
 public class QuestionFragment extends Fragment {
 
     private static final String ARG_QUESTION = "question";
@@ -20,6 +24,14 @@ public class QuestionFragment extends Fragment {
     private Question question;
     private int position, totalQuestions;
 
+    /**
+     * Creates a new instance of QuestionFragment.
+     *
+     * @param question       The Question object for the current question.
+     * @param position       The position of the current question in the quiz (0-indexed).
+     * @param totalQuestions The total number of questions in the quiz.
+     * @return A new instance of QuestionFragment.
+     */
     public static QuestionFragment newInstance(Question question, int position, int totalQuestions) {
         QuestionFragment fragment = new QuestionFragment();
         Bundle args = new Bundle();
@@ -30,6 +42,12 @@ public class QuestionFragment extends Fragment {
         return fragment;
     }
 
+    /**
+     * Called when the fragment is created.
+     * Retrieves the question data and other arguments passed to the fragment.
+     *
+     * @param savedInstanceState The saved state of the fragment.
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +58,14 @@ public class QuestionFragment extends Fragment {
         }
     }
 
+    /**
+     * Called to create the view hierarchy associated with this fragment.
+     *
+     * @param inflater  The LayoutInflater object to inflate the fragment's view.
+     * @param container The ViewGroup container where the fragment's UI will be attached.
+     * @param savedInstanceState A Bundle containing the saved state of the fragment.
+     * @return The root view for the fragment's UI.
+     */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_question, container, false);

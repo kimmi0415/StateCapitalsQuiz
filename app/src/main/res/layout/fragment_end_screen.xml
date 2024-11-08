@@ -14,12 +14,11 @@
         android:layout_height="wrap_content"
         android:textSize="35sp"
         android:textColor="#000000"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="70dp"
+        android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:textStyle="bold"
-        />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- TextView to display the date -->
     <TextView
@@ -31,27 +30,32 @@
         android:textColor="#000000"
         app:layout_constraintTop_toBottomOf="@id/finalScoreTextView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        />
+        app:layout_constraintEnd_toEndOf="parent" />
 
+    <!-- Button to retake the quiz -->
     <Button
         android:id="@+id/retakeQuizButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Retake Same Quiz"
         app:layout_constraintTop_toBottomOf="@id/dateTextView"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/startNewQuizButton"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        android:layout_marginEnd="8dp" />
 
+    <!-- Button to start a new quiz -->
     <Button
         android:id="@+id/startNewQuizButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Start New Quiz"
         app:layout_constraintTop_toBottomOf="@id/dateTextView"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/retakeQuizButton"
+        app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginStart="8dp" />
 
+    <!-- TextView for the note -->
     <TextView
         android:id="@+id/noteTextView"
         android:layout_width="wrap_content"
@@ -60,31 +64,8 @@
         android:text="*If you would like to view past results, please click the top left corner."
         android:textColor="#666666"
         android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/startNewQuizButton"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/startNewQuizButton" />
-
-    <!-- Retake Same Quiz Button on the left
-    <Button
-        android:id="@+id/retakeQuizButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Retake Same Quiz"
-        app:layout_constraintTop_toBottomOf="@id/dateTextView"
-        app:layout_constraintStart_toStartOf="parent" />
-        -->
-
-    <!-- Start New Quiz Button on the right
-    <Button
-        android:id="@+id/startNewQuizButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Start New Quiz"
-        app:layout_constraintTop_toBottomOf="@id/dateTextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/retakeQuizButton"
-        android:layout_marginStart="8dp" />
-    -->
-
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

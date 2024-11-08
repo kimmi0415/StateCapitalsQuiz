@@ -16,6 +16,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * ResultsFragment displays the list of past quiz scores using a RecyclerView.
+ * It loads data from the database and updates the UI asynchronously.
+ */
 public class ResultsFragment extends Fragment {
 
     private RecyclerView resultsRecyclerView;
@@ -24,15 +28,32 @@ public class ResultsFragment extends Fragment {
     private List<Score> scoreList;
     private static final String TAG = "ResultsFragment";
 
+    /**
+     * Default constructor for ResultsFragment.
+     */
     public ResultsFragment() {
         // Required empty public constructor
     }
 
+    /**
+     * Factory method to create a new instance of ResultsFragment.
+     *
+     * @return A new instance of ResultsFragment.
+     */
     public static ResultsFragment newInstance() {
         ResultsFragment fragment = new ResultsFragment();
         return fragment;
     }
 
+
+    /**
+     * Called to create the view hierarchy associated with this fragment.
+     *
+     * @param inflater  The LayoutInflater object to inflate the fragment's view.
+     * @param container The ViewGroup container where the fragment's UI will be attached.
+     * @param savedInstanceState A Bundle containing the saved state of the fragment (if any).
+     * @return The root view for the fragment's UI.
+     */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_results, container, false);
@@ -51,6 +72,10 @@ public class ResultsFragment extends Fragment {
         return view;
     }
 
+    /**
+     * Called when the fragment is visible to the user.
+     * Opens the database connection and starts loading scores asynchronously.
+     */
     @Override
     public void onResume() {
         super.onResume();
@@ -62,6 +87,10 @@ public class ResultsFragment extends Fragment {
         new LoadScoresTask().execute();
     }
 
+    /**
+     * Called when the fragment is no longer visible to the user.
+     * Closes the database connection to release resources.
+     */
     @Override
     public void onPause() {
         super.onPause();
@@ -70,15 +99,30 @@ public class ResultsFragment extends Fragment {
         Log.d(TAG, "ResultsFragment: Database closed");
     }
 
-    // AsyncTask to load scores from the database
+    /**
+     * AsyncTask for loading quiz scores from the database.
+     * This operation is performed in the background to avoid blocking the UI thread.
+     */
     private class LoadScoresTask extends AsyncTask<Void, List<Score>> {
 
+        /**
+         * Performs the database query to retrieve all quiz scores in the background.
+         *
+         * @param voids No parameters are used for this task.
+         * @return A list of Score objects retrieved from the database.
+         */
         @Override
         protected List<Score> doInBackground(Void... voids) {
             // Retrieve all scores in descending order
             return quizData.getAllScores();
         }
 
+        /**
+         * Called after the background task is completed.
+         * Updates the UI with the retrieved list of scores.
+         *
+         * @param scores The list of Score objects retrieved from the database.
+         */
         @Override
         protected void onPostExecute(List<Score> scores) {
             // Update the RecyclerView with the retrieved scores

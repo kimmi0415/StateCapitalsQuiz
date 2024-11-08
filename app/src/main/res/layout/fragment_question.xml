@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:padding="16dp"
+    app:layout_constraintVertical_chainStyle="packed">
 
     <!-- TextView to display the question -->
     <TextView
@@ -12,13 +13,14 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="70dp"
         android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:text="Question goes here" />
+        android:text="Question goes here"
+        app:layout_constraintVertical_chainStyle="packed"/>
 
     <!-- RadioGroup for answer options -->
     <RadioGroup
@@ -27,7 +29,8 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/questionTextView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_chainStyle="packed">
 
         <RadioButton
             android:id="@+id/answer1"
@@ -35,7 +38,8 @@
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:layout_marginTop="25dp"
-            android:text="Answer 1" />
+            android:text="Answer 1"
+            app:layout_constraintVertical_chainStyle="packed"/>
 
         <RadioButton
             android:id="@+id/answer2"
@@ -43,7 +47,8 @@
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:layout_marginTop="25dp"
-            android:text="Answer 2" />
+            android:text="Answer 2"
+            app:layout_constraintVertical_chainStyle="packed"/>
 
         <RadioButton
             android:id="@+id/answer3"
@@ -51,7 +56,8 @@
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:layout_marginTop="25dp"
-            android:text="Answer 3" />
+            android:text="Answer 3"
+            app:layout_constraintVertical_chainStyle="packed"/>
     </RadioGroup>
 
     <!-- TextView to show the progress (e.g., "Question 1 of 6") -->
@@ -64,6 +70,7 @@
         android:textSize="16sp"
         app:layout_constraintTop_toBottomOf="@id/answerGroup"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

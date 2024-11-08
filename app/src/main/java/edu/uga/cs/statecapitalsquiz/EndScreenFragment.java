@@ -11,6 +11,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+/**
+ * EndScreenFragment shows the final quiz score and date, offering options to retake the quiz or start a new one.
+ */
 public class EndScreenFragment extends Fragment {
 
     private static final String ARG_SCORE = "score";
@@ -20,6 +23,15 @@ public class EndScreenFragment extends Fragment {
     private Runnable resetCallback;
     private Runnable newCallback;
 
+    /**
+     * Creates a new instance of EndScreenFragment with the given arguments.
+     *
+     * @param score         The final score of the quiz as a string.
+     * @param date          The date when the quiz was completed.
+     * @param resetCallback Callback to reset the current quiz.
+     * @param newCallback   Callback to start a new quiz.
+     * @return A new instance of EndScreenFragment.
+     */
     public static EndScreenFragment newInstance(String score, String date, Runnable resetCallback, Runnable newCallback) {
         EndScreenFragment fragment = new EndScreenFragment();
         Bundle args = new Bundle();
@@ -31,6 +43,11 @@ public class EndScreenFragment extends Fragment {
         return fragment;
     }
 
+    /**
+     * Called when the fragment is first created. Retrieves the score and date arguments.
+     *
+     * @param savedInstanceState If non-null, this fragment is being re-constructed from a previous saved state.
+     */
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,11 +57,21 @@ public class EndScreenFragment extends Fragment {
         }
     }
 
+    /**
+     * Called to have the fragment instantiate its user interface view.
+     *
+     * @param inflater           The LayoutInflater object that can be used to inflate views in the fragment.
+     * @param container          If non-null, this is the parent view that the fragment's UI should be attached to.
+     * @param savedInstanceState If non-null, this fragment is being re-constructed from a previous saved state.
+     * @return The root View of the fragment's layout.
+     */
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_end_screen, container, false);
 
+        // Initialize UI elements
         TextView scoreTextView = view.findViewById(R.id.finalScoreTextView);
         TextView dateTextView = view.findViewById(R.id.dateTextView);
         TextView noteTextView = view.findViewById(R.id.noteTextView);
@@ -68,8 +95,6 @@ public class EndScreenFragment extends Fragment {
                 newCallback.run();
             }
         });
-
         return view;
     }
-
 }
